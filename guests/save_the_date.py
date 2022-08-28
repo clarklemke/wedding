@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 from django.conf import settings
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from .models import Party
 
@@ -70,22 +70,22 @@ def send_save_the_date_email(context, recipient, test_only=False):
 
     subject = "Save the Date!"
     # https://www.vlent.nl/weblog/2014/01/15/sending-emails-with-embedded-images-in-django/
-    msg = EmailMessage(
+    msg = EmailMultiAlternatives(
         subject,
         template_text,
         settings.DEFAULT_WEDDING_FROM_EMAIL,
         recipient,
         reply_to=[settings.DEFAULT_WEDDING_REPLY_EMAIL],
     )
-    msg.mixed_subtype = "related"
-    for filename in (context["header_filename"], context["main_image"]):
-        attachment_path = os.path.join(
-            os.path.dirname(__file__), "static", "save-the-date", "images", filename
-        )
-        with open(attachment_path, "rb") as image_file:
-            msg_img = MIMEImage(image_file.read())
-            msg_img.add_header("Content-ID", "<{}>".format(filename))
-            msg.attach(msg_img)
+    msg.attach_alternative(template_html, "text/html")
+    # for filename in (context["header_filename"], context["main_image"]):
+    #     attachment_path = os.path.join(
+    #         os.path.dirname(__file__), "static", "save-the-date", "images", filename
+    #     )
+    #     with open(attachment_path, "rb") as image_file:
+    #         msg_img = MIMEImage(image_file.read())
+    #         msg_img.add_header("Content-ID", "<{}>".format(filename))
+    #         msg.attach(msg_img)
 
     print("sending {} to {}".format(context["name"], ", ".join(recipient)))
     if not test_only:

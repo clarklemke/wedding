@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import mimetypes
 import dj_database_url
 from dotenv import load_dotenv
 
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "api.urls"
@@ -149,12 +151,14 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Email
+mimetypes.add_type("image/svg+xml", ".svg", True)
+mimetypes.add_type("image/svg+xml", ".svgz", True)
 INSTALLED_APPS += ["anymail"]  # noqa F405
 EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
 ANYMAIL = {
-    "SENDGRID_API_KEY": os.getenv("ENDGRID_API_KEY"),
+    "SENDGRID_API_KEY": os.getenv("SENDGRID_API_KEY"),
     "SENDGRID_API_URL": "https://api.sendgrid.com/v3/",
 }
 
