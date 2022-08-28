@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "drf_yasg",
     "ssapi",
     "ping",
+    "guests",
 ]
 
 MIDDLEWARE = [
@@ -63,7 +64,7 @@ ROOT_URLCONF = "api.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [str(BASE_DIR / "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -149,6 +150,14 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
+# Email
+INSTALLED_APPS += ["anymail"]  # noqa F405
+EMAIL_BACKEND = "anymail.backends.sendgrid.EmailBackend"
+ANYMAIL = {
+    "SENDGRID_API_KEY": os.getenv("ENDGRID_API_KEY"),
+    "SENDGRID_API_URL": "https://api.sendgrid.com/v3/",
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -159,3 +168,28 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 if ENVIRONMENT == "PROD":
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+
+### Wedding Temp
+BRIDE_AND_GROOM = "Anna and Clark"
+# base address for all emails
+DEFAULT_WEDDING_EMAIL = "clarklemke@gmail.com"
+# the address your emails (save the dates/invites/etc.) will come from
+DEFAULT_WEDDING_FROM_EMAIL = DEFAULT_WEDDING_EMAIL
+# (
+#     BRIDE_AND_GROOM + " <" + DEFAULT_WEDDING_EMAIL + ">"
+# )  # change to 'address@domain.tld'
+# the default reply-to of your emails
+DEFAULT_WEDDING_REPLY_EMAIL = DEFAULT_WEDDING_EMAIL  # change to 'address@domain.tld'
+# the location of your wedding
+WEDDING_LOCATION_CANADA = "Vancouver, Canada"
+WEDDING_LOCATION_FRANCE = "Viella, France"
+# the date of your wedding
+WEDDING_DATE_CANADA = "July 15th, 2023"
+WEDDING_DATE_FRANCE = "August 19th, 2023"
+
+# when sending test emails it will use this address
+DEFAULT_WEDDING_TEST_EMAIL = "clarklemke@gmail.com"
+
+# This is used in links in save the date / invitations
+WEDDING_WEBSITE_URL = "https://annaclarkwedding.gq"

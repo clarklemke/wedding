@@ -55,4 +55,5 @@ urlpatterns = [
     url(r"^api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     url(r"^", include(router.urls)),
     path("admin/", admin.site.urls),
+    path("wedding/", include("guests.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
