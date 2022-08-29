@@ -12,8 +12,8 @@ from .models import Party
 SAVE_THE_DATE_TEMPLATE = "email_templates/save_the_date.html"
 SAVE_THE_DATE_CONTEXT = {
     "title": "Save The Date",
-    "header_filename": "save-the-date.svg",
-    "main_image": "save-the-date.svg",
+    "header_filename": "save-the-date.png",
+    "main_image": "save-the-date.png",
     "main_color": "#ffffff",
     "font_color": "#ff5c3e",
 }

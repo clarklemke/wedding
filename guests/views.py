@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from .models import Guest
+from .save_the_date import SAVE_THE_DATE_CONTEXT
 
 
 from .save_the_date import (
@@ -14,6 +15,23 @@ from .save_the_date import (
 
 class GuestListView(ListView):
     model = Guest
+
+
+def home_page(request):
+    return render(
+        request,
+        "home.html",
+        context={
+            "save_the_dates": SAVE_THE_DATE_CONTEXT,
+            "support_email": settings.DEFAULT_WEDDING_REPLY_EMAIL,
+            "website_url": settings.WEDDING_WEBSITE_URL,
+            "couple_name": settings.BRIDE_AND_GROOM,
+            "wedding_location_canada": settings.WEDDING_LOCATION_CANADA,
+            "wedding_location_france": settings.WEDDING_LOCATION_FRANCE,
+            "wedding_date_canada": settings.WEDDING_DATE_CANADA,
+            "wedding_date_france": settings.WEDDING_DATE_FRANCE,
+        },
+    )
 
 
 def save_the_date_preview(request):

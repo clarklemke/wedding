@@ -1,8 +1,9 @@
-from django.urls import re_path
+from django.urls import path, re_path
 
-from .views import GuestListView, test_email, save_the_date_preview
+from .views import GuestListView, home_page, test_email, save_the_date_preview
 
 urlpatterns = [
+    path("", home_page, name="home"),
     re_path(r"^guests/$", GuestListView.as_view(), name="guest-list"),
     # re_path(r'^dashboard/$', dashboard, name='dashboard'),
     # re_path(r'^guests/export$', export_guests, name='export-guest-list'),
