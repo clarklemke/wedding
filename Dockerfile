@@ -11,7 +11,9 @@ RUN apt-get install -y python python-pip python-dev
 ADD requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 ADD . /app
-RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
-CMD ["gunicorn", "api.wsgi", "-b", "0.0.0.0:8000", "--access-logfile", "-"]
+
+COPY start /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start

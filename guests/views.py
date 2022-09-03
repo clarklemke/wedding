@@ -1,6 +1,7 @@
 from django.views.generic import ListView
 from django.shortcuts import render
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from .models import Guest
 from .save_the_date import SAVE_THE_DATE_CONTEXT
@@ -40,6 +41,7 @@ def save_the_date_preview(request):
     return render(request, SAVE_THE_DATE_TEMPLATE, context=context)
 
 
+@login_required
 def test_email(request):
     context = get_save_the_date_context()
     send_save_the_date_email(context, [settings.DEFAULT_WEDDING_TEST_EMAIL])

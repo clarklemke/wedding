@@ -1,2 +1,2 @@
 #!/bin/bash
-docker exec -t -i `docker ps | grep "$1" | cut -d " " -f 1` bash
+docker exec -t -i `docker ps -aqf "name=wedding-api-1" ` bash
