@@ -52,6 +52,11 @@ p {
     line-height: 1.5;
 }
 
+.guest-label {
+    font-size: 24px;
+    color: #ff5c3e;
+}
+
 .bg-info {
     background-color: #00b1a9;
     color: #ffefdb;

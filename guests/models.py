@@ -29,6 +29,18 @@ class Party(models.Model):
     def __unicode__(self):
         return self.name
 
+    @property
+    def ordered_guests(self):
+        return self.guest_set.order_by("pk")
+
+    @property
+    def any_guests_attending_canada(self):
+        return any(self.guest_set.values_list("attending_canada", flat=True))
+
+    @property
+    def any_guests_attending_france(self):
+        return any(self.guest_set.values_list("attending_france", flat=True))
+
     class Meta:
         db_table = "party"
 
@@ -48,6 +60,11 @@ class Guest(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    @property
+    def unique_id(self):
+        # convert to string so it can be used in the "add" templatetag
+        return str(self.pk)
 
     class Meta:
         db_table = "guests"

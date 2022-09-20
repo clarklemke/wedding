@@ -1,14 +1,12 @@
-from email.mime.image import MIMEImage
-import os
 from datetime import datetime
 from django.conf import settings
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMultiAlternatives
 from django.urls import reverse
 from django.http import Http404
 from django.template.loader import render_to_string
-from guests.models import Party, MEALS
+from guests.models import Party
 
-INVITATION_TEMPLATE = "guests/email_templates/invitation.html"
+INVITATION_TEMPLATE = "email_templates/invitation.html"
 
 
 def guess_party_by_invite_id_or_404(invite_id):
@@ -32,11 +30,10 @@ def get_invitation_context(party):
         "preheader_text": "You are invited!",
         "invitation_id": party.invitation_id,
         "party": party,
-        "meals": MEALS,
     }
 
 
-def send_invitation_email(party, test_only=False, recipient=None):
+def send_invitation_email(party, recipient, test_only=False):
     if recipient is None:
         recipient = party.email
     if not recipient:
@@ -54,23 +51,15 @@ def send_invitation_email(party, test_only=False, recipient=None):
         settings.BRIDE_AND_GROOM, reverse("invitation", args=[context["invitation_id"]])
     )
     subject = "You're invited"
-    # https://www.vlent.nl/weblog/2014/01/15/sending-emails-with-embedded-images-in-django/
-    msg = EmailMessage(
+
+    msg = EmailMultiAlternatives(
         subject,
         template_text,
         settings.DEFAULT_WEDDING_FROM_EMAIL,
         recipient,
         reply_to=[settings.DEFAULT_WEDDING_REPLY_EMAIL],
     )
-    msg.mixed_subtype = "related"
-    for filename in (context["main_image"],):
-        attachment_path = os.path.join(
-            os.path.dirname(__file__), "static", "invitation", "images", filename
-        )
-        with open(attachment_path, "rb") as image_file:
-            msg_img = MIMEImage(image_file.read())
-            msg_img.add_header("Content-ID", "<{}>".format(filename))
-            msg.attach(msg_img)
+    msg.attach_alternative(template_html, "text/html")
 
     print("sending invitation to {} ({})".format(party.name, ", ".join(recipient)))
     if not test_only:

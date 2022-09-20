@@ -1,5 +1,6 @@
 from copy import copy
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -22,7 +23,7 @@ def send_all_save_the_dates(test_only=False, mark_as_sent=False):
     for party in to_send_to:
         send_save_the_date_to_party(party, test_only=test_only)
         if mark_as_sent:
-            party.save_the_date_sent = datetime.now()
+            party.save_the_date_sent = datetime.now(ZoneInfo("America/Los_Angeles"))
             party.save()
 
 
@@ -34,7 +35,7 @@ def send_save_the_date_to_party(party, test_only=False):
             "===== WARNING: no valid email addresses found for {} =====".format(party)
         )
     else:
-        send_save_the_date_email(context, recipient, test_only=test_only)
+        send_save_the_date_email(context, [recipient], test_only=test_only)
 
 
 def get_save_the_date_context():
@@ -76,8 +77,8 @@ def send_save_the_date_email(context, recipient, test_only=False):
     )
     msg.attach_alternative(template_html, "text/html")
 
-    print("sending {} to {}".format(context["name"], ", ".join(recipient)))
     if not test_only:
+        print(f"Sending save the date to: {recipient}")
         msg.send()
 
 
