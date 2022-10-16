@@ -75,9 +75,17 @@ def invitation(request, invite_id):
         return HttpResponseRedirect(reverse("rsvp-confirm", args=[invite_id]))
     return render(
         request,
-        template_name="invitation.html",
+        template_name="home.html",
         context={
             "party": party,
+            "save_the_dates": SAVE_THE_DATE_CONTEXT,
+            "support_email": settings.DEFAULT_WEDDING_REPLY_EMAIL,
+            "website_url": settings.WEDDING_WEBSITE_URL,
+            "couple_name": settings.BRIDE_AND_GROOM,
+            "wedding_location_canada": settings.WEDDING_LOCATION_CANADA,
+            "wedding_location_france": settings.WEDDING_LOCATION_FRANCE,
+            "wedding_date_canada": settings.WEDDING_DATE_CANADA,
+            "wedding_date_france": settings.WEDDING_DATE_FRANCE,
         },
     )
 

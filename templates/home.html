@@ -9,16 +9,15 @@
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">{{ couple_name }}'s Big Day</a>
+                <a class="navbar-brand page-scroll" href="#page-top">{{ couple_name }}'s Wedding</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a class="page-scroll" href="#vancouver">Vancouver</a>
@@ -40,21 +39,66 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Welcome!</h2>
-                    <hr>
-                    <p>
-                        Hello friends and family!
-                    </p>
-                    <p>
-                        If you're looking for information about the event, look no further!
-                    </p>
-                    <p>
-                        Looking forward to seeing everyone!
-                    </p>
+                    <div id="invitation-header">
+                        <h2>Anna and Clark's Wedding</h2>
+                        <p class="lead">
+                            July 15, 2023, at 5:00 pm<br>
+                            Burnaby Village Museum<br>
+                            Burnaby, Canada
+                        </p>
+                        <p class="lead">
+                            August 19, 2023, at 4:30 pm<br>
+                            Chateau Viella<br>
+                            Viella, France
+                        </p>
+                        </div>
                 </div>
             </div>
         </div>
     </section>
+    {% if '/invite/' in request.path %}
+    <section class="col-md-6">
+        <form data-toggle="validator" id="invitation-details" class="form" method="post">
+            <h2 id="rsvp-header" class="text-center">You are invited to both wedding celebrations</h2>
+            <h2 id="rsvp-header" class="text-center">Please RSVP</h2>
+            <div class="clearfix"></div>
+            {% csrf_token %}
+            {% for guest in party.ordered_guests.all %}
+            <div class="form-group">
+                {% with 'attending-canada-'|add:guest.unique_id as attending_label %}
+                <label for="{{ attending_label }}" class="guest-label">{{ guest.name }}</label>
+                <br>
+                <label class="form-check-input">
+                    <input class="form-check" type="radio" name="{{ attending_label }}" value="yes" {% if guest.attending_canada %}checked="checked"{% endif %} required> will attend Canada
+                </label>
+                <label class="form-check-input">
+                    <input class="form-check" type="radio" name="{{ attending_label }}" value="no" {% if guest.attending_canada == False %}checked="checked"{% endif %} required> will <u>not</u> attend Canada
+                </label>
+                {% endwith %}
+                <hr class="style-two">
+                {% with 'attending-france-'|add:guest.unique_id as attending_label %}
+                <label class="form-check-input">
+                    <input class="form-check" type="radio" name="{{ attending_label }}" value="yes" {% if guest.attending_france %}checked="checked"{% endif %} required> will attend France
+                </label>
+                <label class="form-check-input">
+                    <input class="form-check" type="radio" name="{{ attending_label }}" value="no" {% if guest.attending_france == False %}checked="checked"{% endif %} required> will <u>not</u> attend France
+                </label>
+                {% endwith %}
+            </div>
+            {% with 'dietary-'|add:guest.unique_id as dietary_label %}
+            <div class="form-group col-sm-12">
+                <input type="text" name="{{ dietary_label }}" class="form-control" placeholder="Dietary Restrictions" >
+            </div>
+            {% endwith %}
+            {% endfor %}
+            <div class="form-group">
+                <div class="text-center">
+                    <input type="submit" class="btn invitation-submit" value="Submit Response" />
+                </div>
+            </div>
+        </form>
+        </section>
+    {% endif %}
     <section class="no-padding" id="navigation">
         <div class="container-fluid">
             <div class="row no-gutter">

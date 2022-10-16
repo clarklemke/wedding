@@ -10,7 +10,8 @@ body {
 }
 
 #main {
-    background-color: #fff;
+    background: url("/static/bigday/images/Asset\ 4.svg") 50% 0 no-repeat fixed;
+    background-color: white;
     padding-bottom: 2em;
     margin-top: 1em;
     margin-bottom: 2em;
