@@ -2,14 +2,20 @@
 {% load static %}
 {% block page_head %}
     <!-- Custom CSS -->
-    <link href="{% static 'bigday/css/creative.css' %}" rel="stylesheet">
-{% endblock %}
+    <link href="{% static 'bigday/css/creative.css' %}" rel="stylesheet"/>
+{% endblock page_head %}
 {% block page_content %}
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <button type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar-collapse"
+                        aria-controls="navbar-collapse"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -35,123 +41,50 @@
         <!-- /.container-fluid -->
     </nav>
     {% block main %}
-    <section class="bg-info" id="welcome">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <div id="invitation-header">
-                        <h2>Anna and Clark's Wedding</h2>
-                        <p class="lead">
-                            July 15, 2023, at 5:00 pm<br>
-                            Burnaby Village Museum<br>
-                            Burnaby, Canada
-                        </p>
-                        <p class="lead">
-                            August 19, 2023, at 4:30 pm<br>
-                            Chateau Viella<br>
-                            Viella, France
-                        </p>
+        <section class="bg-info" id="welcome">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <div id="invitation-header">
+                            <h2>Anna and Clark's Wedding</h2>
+                            <p class="lead">
+                                July 15, 2023, at 5:00 pm
+                                <br/>
+                                Burnaby Village Museum
+                                <br/>
+                                Burnaby, Canada
+                            </p>
+                            <p class="lead">
+                                August 19, 2023, at 4:30 pm
+                                <br/>
+                                Chateau Viella
+                                <br/>
+                                Viella, France
+                            </p>
                         </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    {% if '/invite/' in request.path %}
-    <section class="col-md-6">
-        <form data-toggle="validator" id="invitation-details" class="form" method="post">
-            <h2 id="rsvp-header" class="text-center">You are invited to both wedding celebrations</h2>
-            <h2 id="rsvp-header" class="text-center">Please RSVP</h2>
-            <div class="clearfix"></div>
-            {% csrf_token %}
-            {% for guest in party.ordered_guests.all %}
-            <div class="form-group">
-                {% with 'attending-canada-'|add:guest.unique_id as attending_label %}
-                <label for="{{ attending_label }}" class="guest-label">{{ guest.name }}</label>
-                <br>
-                <label class="form-check-input">
-                    <input class="form-check" type="radio" name="{{ attending_label }}" value="yes" {% if guest.attending_canada %}checked="checked"{% endif %} required> will attend Canada
-                </label>
-                <label class="form-check-input">
-                    <input class="form-check" type="radio" name="{{ attending_label }}" value="no" {% if guest.attending_canada == False %}checked="checked"{% endif %} required> will <u>not</u> attend Canada
-                </label>
-                {% endwith %}
-                <hr class="style-two">
-                {% with 'attending-france-'|add:guest.unique_id as attending_label %}
-                <label class="form-check-input">
-                    <input class="form-check" type="radio" name="{{ attending_label }}" value="yes" {% if guest.attending_france %}checked="checked"{% endif %} required> will attend France
-                </label>
-                <label class="form-check-input">
-                    <input class="form-check" type="radio" name="{{ attending_label }}" value="no" {% if guest.attending_france == False %}checked="checked"{% endif %} required> will <u>not</u> attend France
-                </label>
-                {% endwith %}
-            </div>
-            {% with 'dietary-'|add:guest.unique_id as dietary_label %}
-            <div class="form-group col-sm-12">
-                <input type="text" name="{{ dietary_label }}" class="form-control" placeholder="Dietary Restrictions" >
-            </div>
-            {% endwith %}
-            {% endfor %}
-            <div class="form-group">
-                <div class="text-center">
-                    <input type="submit" class="btn invitation-submit" value="Submit Response" />
-                </div>
-            </div>
-        </form>
         </section>
-    {% endif %}
-    <section class="no-padding" id="navigation">
-        <div class="container-fluid">
-            <div class="row no-gutter">
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#vancouver" class="portfolio-box page-scroll">
-                        <img src="{% static 'bigday/images/vancouver.jpg' %}" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-name">
-                                    Vancouver
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-sm-6">
-                    <a href="#viella" class="portfolio-box page-scroll">
-                        <img src="{% static 'bigday/images/viella.jpg' %}" class="img-responsive" alt="">
-                        <div class="portfolio-box-caption">
-                            <div class="portfolio-box-caption-content">
-                                <div class="project-name">
-                                    Viella
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="vancouver" class="bg-dark">
-        {% include 'partials/vancouver.html' %}
-    </section>
-    <section id="viella" class="bg-primary">
-        {% include 'partials/viella.html' %}
-    </section>
-    <section id="contact" class="bg-dark">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Contact us!</h2>
-                    <hr class="primary">
-                    <p>If you have any questions don't hesitate to reach out!</p>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <i class="fa fa-envelope-o fa-3x wow bounceIn" data-wow-delay=".1s"></i>
-                    <p><a href="mailto:{{ support_email }}">{{ support_email }}</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endblock %}
-{% endblock %}
+        {% if '/invite/' in request.path %}
+            <section class="col-md-6" id="invitation">
+                {% include "partials/invitation-form.html" %}
+            </section>
+        {% endif %}
+        <section class="no-padding" id="navigation">
+            {% include "partials/photo-bar.html" %}
+        </section>
+        <section id="vancouver" class="bg-dark">
+            {% include "partials/vancouver.html" %}
+        </section>
+        <section id="viella" class="bg-primary">
+            {% include "partials/viella.html" %}
+        </section>
+        <section id="contact" class="bg-dark">
+            {% include "partials/contact.html" %}
+        </section>
+    {% endblock main %}
+{% endblock page_content %}
 {% block page_js %}
     <!-- Plugin JavaScript -->
     <!-- Easing is for the vertical scroll animations -->
@@ -160,4 +93,4 @@
     <script src="{% static 'creative/js/jquery.fittext.js' %}"></script>
     <!-- Custom Theme JavaScript -->
     <script src="{% static 'creative/js/creative.js' %}"></script>
-{% endblock %}
+{% endblock page_js %}
