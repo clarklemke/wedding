@@ -1,36 +1,53 @@
-{% extends 'email_templates/email_base.html' %}
+{% extends "email_templates/email_base.html" %}
 {% load static %}
 {% block main_image %}
-{% with "save-the-date/images/"|add:main_image as main_static_url %}
-<img src="https://annaclarkwedding.gq/static/save-the-date/images/save-the-date.jpg"
-     alt="{{ couple }}"
-     style="display: block; padding: 0; color: #666666; text-decoration: none; font-family: Helvetica, arial, sans-serif; font-size: 16px;"
-     class="img-max" border="0"
-     height="100%" width="100%">
-{% endwith %}
-{% endblock %}
+    {% with "save-the-date/images/"|add:main_image as main_static_url %}
+        <img src="https://annaclarkwedding.gq/static/save-the-date/images/save-the-date.jpg"
+             alt="{{ couple }}"
+             style="display: block;
+                    padding: 0;
+                    color: #666666;
+                    text-decoration: none;
+                    font-family: Helvetica, arial, sans-serif;
+                    font-size: 16px"
+             class="img-max"
+             border="0"
+             height="100%"
+             width="100%"/>
+    {% endwith %}
+{% endblock main_image %}
 {% block main_copy %}
     <table border="0" width="100%" cellpadding="0" cellspacing="0">
         <tbody>
-        <tr>
-            <td style="font-size: 35px; font-family: Palatino, serif; color: {{ font_color }}; padding-top: 30px; font-weight:bolder;"
-                class="padding-copy"
-                align="center">
-                {{ date }}
-            </td>
-        </tr>
-        <tr>
-            <td style="padding: 20px 0 0 0; font-size: 16px; line-height: 20px; font-family: Helvetica, Arial, sans-serif; color: {{ font_color }};"
-                class="padding-copy"
-                align="center">
-            </td>
-        </tr>
+            <tr>
+                <td style="font-size: 35px;
+                           font-family: Palatino, serif;
+                           color: {{ font_color }};
+                           padding-top: 30px;
+                           font-weight:bolder"
+                    class="padding-copy"
+                    align="center">
+                    {{ date }}
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 20px 0 0 0;
+                           font-size: 16px;
+                           line-height: 20px;
+                           font-family: Helvetica, Arial, sans-serif;
+                           color: {{ font_color }}"
+                    class="padding-copy"
+                    align="center">
+                </td>
+            </tr>
         </tbody>
     </table>
-{% endblock %}
+{% endblock main_copy %}
 {% block footer_content %}
     Invitations to follow.
     {% if email_mode %}
-        <p><a href="{{ site_url }}">{{ site_url }}</a></p>
+        <p>
+            <a href="{{ site_url }}">{{ site_url }}</a>
+        </p>
     {% endif %}
-{% endblock %}
+{% endblock footer_content %}

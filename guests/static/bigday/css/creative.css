@@ -1,3 +1,4 @@
+/* Base CSS */
 html,body {
 	width: 100%;
 	height: 100%;
@@ -31,44 +32,8 @@ p {
 	font-size: 16px;
 	line-height: 1.5;
 }
-.guest-label {
-	font-size: 24px;
-	color: #ff5c3e;
-}
-.bg-info {
-	background:linear-gradient(to bottom right,#df8fbd 50%, #ffefdb 50%);
-	color: #ffefdb;
-}
-a.bg-info:hover,a.bg-info:focus {
-	background-color: #afd9ee;
-}
-.bg-primary {
-	background-color: #ffefdb;
-	color: #ff5c3e;
-}
-.bg-primary a {
-	color: #00b1a9;
-}
-.bg-dark {
-	color: #ffefdb;
-	background-color: #df8fbd;
-}
-.text-faded {
-	color: rgba(255,255,255,.7);
-}
-section {
-	padding: 30px 0;
-}
-#welcome {
-	padding: 40px 0;
-}
-aside {
-	padding: 50px 0;
-}
-.no-padding {
-	padding: 0;
-}
 
+/* Navbar Section CSS */
 .navbar {
     border: none;
 }
@@ -148,6 +113,9 @@ aside {
 		color: #c2422c;
 	}
 }
+
+/* Header Section CSS */
+
 header {
 	position: relative;
 	width: 100%;
@@ -160,10 +128,7 @@ header {
 	background-size: cover;
 	-o-background-size: cover;
 }
-/* #main-header {
-	background-image: url('../../save-the-date/images/save-the-date.jpg');
-}
-*/
+
 header .header-content {
 	position: relative;
 	width: 100%;
@@ -213,37 +178,50 @@ header .header-content .header-content-inner p {
 		font-size: 18px;
 	}
 }
+
+/* Homepage Sections CSS */
+
+#welcome {
+	padding: 40px 0;
+}
+
+section {
+	padding: 30px 0;
+}
+
 .section-heading {
 	margin-top: 0;
 }
-.service-box {
-	margin: 50px auto 0;
-	max-width: 400px;
+
+.bg-info {
+	background:linear-gradient(to bottom right,#df8fbd 50%, #ffefdb 50%);
+	color: #ffefdb;
 }
-@media(min-width:992px) {
-	.service-box {
-		margin: 20px auto 0;
-	}
+a.bg-info:hover,a.bg-info:focus {
+	background-color: #afd9ee;
 }
-.service-box p {
-	margin-bottom: 0;
+.bg-primary {
+	background-color: #ffefdb;
+	color: #ff5c3e;
 }
-.charity-box {
-	margin: 50px auto 0;
-	max-width: 400px;
+.bg-primary a {
+	color: #00b1a9;
 }
-@media(min-width:992px) {
-	.charity-box {
-		margin: 20px auto 0;
-	}
+.bg-dark {
+	color: #ffefdb;
+	background-color: #df8fbd;
 }
-.portfolio-box {
+.text-faded {
+	color: rgba(255,255,255,.7);
+}
+
+.couple-location-photo {
 	display: block;
 	position: relative;
 	margin: 0 auto;
 	max-width: 650px;
 }
-.portfolio-box .portfolio-box-caption {
+.couple-location-photo .couple-location-photo-caption {
 	display: block;
 	position: absolute;
 	bottom: 0;
@@ -257,46 +235,45 @@ header .header-content .header-content-inner p {
 	-moz-transition: all .35s;
 	transition: all .35s;
 }
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 	position: absolute;
 	top: 50%;
 	width: 100%;
 	text-align: center;
 	transform: translateY(-50%);
 }
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category,.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 	padding: 0 15px;
 	font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
 }
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 	text-transform: uppercase;
 	font-size: 14px;
 	font-weight: 600;
 }
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 	font-size: 18px;
 }
-.portfolio-box:hover .portfolio-box-caption {
+.couple-location-photo:hover .couple-location-photo-caption {
 	opacity: 1;
 }
 @media(min-width:768px) {
-	.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-category {
+	.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 		font-size: 16px;
 	}
-	.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .project-name {
+	.couple-location-photo .couple-location-photo-caption .couple-location-photo-caption-content {
 		font-size: 22px;
 	}
 }
-.call-to-action h2 {
-	margin: 0 auto 20px;
+
+.no-gutter > [class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
 }
 .text-primary {
 	color: #f05f40;
 }
-.no-gutter > [class*=col-] {
-	padding-right: 0;
-	padding-left: 0;
-}
+
 .btn-default {
 	border-color: #fff;
 	color: #222;
@@ -373,21 +350,14 @@ img::-moz-selection {
 	color: #fff;
 	background: 0 0;
 }
+.photo-bar {
+	display: flex;
+	justify-content: center;
+}
 #footer {
 	background-color: #222;
 	padding-bottom: 30px;
 }
-
-#invitation-details, #rsvp-form {
-    padding: 1em;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: .2em solid white;
-    background-color: #ffefdb;
-    color: #df8fbd;
-}
-
 
 body {
     -webkit-background-size: cover;
@@ -398,10 +368,17 @@ body {
     color: #ff5c3e;
 }
 
-.form-label {
-    font-size: 24px;
-}
 /* Invitation Section CSS */
+#invitation-details, #rsvp-form {
+    padding: 1em;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border: .2em solid white;
+    background-color: #ffefdb;
+    color: #df8fbd;
+}
+
 #invitation-body {
     background-color: #ffefdb;
     color: #ff5c3e;
@@ -424,13 +401,13 @@ body {
     color: #ffefdb;
 }
 
-#footer {
-    padding-bottom: 30px;
-}
-
 .guest-label {
    font-size: x-large;
    color: #00b1a9;
+}
+
+.form-label {
+    font-size: 24px;
 }
 
 .btn.invitation-submit {

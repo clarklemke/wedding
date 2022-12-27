@@ -67,11 +67,11 @@
             </div>
         </section>
         {% if '/invite/' in request.path %}
-            <section class="col-md-6" id="invitation">
+            <section id="invitation" class="container">
                 {% include "partials/invitation-form.html" %}
             </section>
         {% endif %}
-        <section class="no-padding" id="navigation">
+        <section id="navigation" class="container-fluid">
             {% include "partials/photo-bar.html" %}
         </section>
         <section id="vancouver" class="bg-dark">
