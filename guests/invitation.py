@@ -24,7 +24,7 @@ def get_invitation_context(party):
     return {
         "title": "Save The Date",
         "main_image": "save-the-date.svg",
-        "main_color": "#fff3e8",
+        "main_color": "#ffefdb",
         "font_color": "#666666",
         "page_title": "Anna and Clark - You're Invited!",
         "preheader_text": "You are invited!",
@@ -50,7 +50,7 @@ def send_invitation_email(party, recipient, test_only=False):
     template_text = "You're invited to {}'s wedding. To view this invitation, visit {} in any browser.".format(
         settings.BRIDE_AND_GROOM, reverse("invitation", args=[context["invitation_id"]])
     )
-    subject = "You're invited"
+    subject = "Anna and Clark Wedding Invitation"
 
     msg = EmailMultiAlternatives(
         subject,
