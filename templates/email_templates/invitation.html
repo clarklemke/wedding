@@ -25,17 +25,18 @@
     </table>
 {% endblock lead_copy %}
 {% block main_image %}
-    {% with "invitation/images/"|add:main_image as main_static_url %}
-        <img src="https://annaclarkwedding.gq/static/save-the-date/images/invitation.jpg"
+    <a style="color: #ff5c3e"
+       href="{% if email_mode %}{{ site_url }}{% endif %}{% url 'invitation' invitation_id %}">
+        <img src="https://annaclarkwedding.gq/static/bigday/images/invite.jpg"
              alt="Anna and Clark's Wedding Invitation"
              style="display: block;
                     padding: 0;
-                    color: #ffefdb"
+                    color: #ffffff"
              class="img-max"
              border="0"
              height="512"
              width="512"/>
-    {% endwith %}
+    </a>
 {% endblock main_image %}
 {% block main_copy %}
     <table border="0"

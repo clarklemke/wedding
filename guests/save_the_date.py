@@ -48,6 +48,8 @@ def get_save_the_date_context():
     context["location_france"] = settings.WEDDING_LOCATION_FRANCE
     context["date_canada"] = settings.WEDDING_DATE_CANADA
     context["date_france"] = settings.WEDDING_DATE_FRANCE
+    context["time_canada"] = settings.WEDDING_TIME_CANADA
+    context["time_france"] = settings.WEDDING_TIME_FRANCE
     context["page_title"] = settings.BRIDE_AND_GROOM + " - Save the Dates!"
     context["preheader_text"] = (
         "The date(s) that you've eagerly been waiting for is finally here. "

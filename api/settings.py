@@ -191,6 +191,9 @@ WEDDING_LOCATION_FRANCE = "Viella, France"
 WEDDING_DATE_CANADA = "July 15th, 2023"
 WEDDING_DATE_FRANCE = "August 19th, 2023"
 
+WEDDING_TIME_CANADA = "5:30pm"
+WEDDING_TIME_FRANCE = "3:30pm"
+
 # when sending test emails it will use this address
 DEFAULT_WEDDING_TEST_EMAIL = "clarklemke@gmail.com"
 

@@ -41,6 +41,8 @@ def home_page(request):
             "wedding_location_france": settings.WEDDING_LOCATION_FRANCE,
             "wedding_date_canada": settings.WEDDING_DATE_CANADA,
             "wedding_date_france": settings.WEDDING_DATE_FRANCE,
+            "wedding_time_canada": settings.WEDDING_TIME_CANADA,
+            "wedding_time_france": settings.WEDDING_TIME_FRANCE,
         },
     )
 
@@ -86,6 +88,8 @@ def invitation(request, invite_id):
             "wedding_location_france": settings.WEDDING_LOCATION_FRANCE,
             "wedding_date_canada": settings.WEDDING_DATE_CANADA,
             "wedding_date_france": settings.WEDDING_DATE_FRANCE,
+            "wedding_time_canada": settings.WEDDING_TIME_CANADA,
+            "wedding_time_france": settings.WEDDING_TIME_FRANCE,
         },
     )
 
