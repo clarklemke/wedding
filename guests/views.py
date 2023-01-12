@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
 from .models import Guest
 from .save_the_date import SAVE_THE_DATE_CONTEXT
 from .invitation import (
@@ -28,7 +28,7 @@ class GuestListView(ListView):
     model = Guest
 
 
-def home_page(request):
+def home_page(request: HttpRequest) -> HttpResponse:
     return render(
         request,
         "home.html",
@@ -47,20 +47,20 @@ def home_page(request):
     )
 
 
-def save_the_date_preview(request):
+def save_the_date_preview(request: HttpRequest) -> HttpResponse:
     context = get_save_the_date_context()
     context["email_mode"] = False
     return render(request, SAVE_THE_DATE_TEMPLATE, context=context)
 
 
 @login_required
-def test_email(request):
+def test_email(request: HttpRequest) -> HttpResponse:
     context = get_save_the_date_context()
     send_save_the_date_email(context, [settings.DEFAULT_WEDDING_TEST_EMAIL])
     return HttpResponse("sent!")
 
 
-def invitation(request, invite_id):
+def invitation(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
     if party.invite_viewed is None:
         # update if this is the first time the invitation was opened
@@ -128,7 +128,7 @@ def _parse_invite_params(params):
         )
 
 
-def rsvp_confirm(request, invite_id=None):
+def rsvp_confirm(request: HttpRequest, invite_id: str = None) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
     return render(
         request,
@@ -141,14 +141,15 @@ def rsvp_confirm(request, invite_id=None):
 
 
 @login_required
-def invitation_email_preview(request, invite_id):
+def invitation_email_preview(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
     context = get_invitation_context(party)
     return render(request, INVITATION_TEMPLATE, context=context)
 
 
 @login_required
-def invitation_email_test(request, invite_id):
+def invitation_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
-    send_invitation_email(party, [settings.DEFAULT_WEDDING_TEST_EMAIL])
+    print(party)
+    send_invitation_email(party, [party.email])
     return HttpResponse("sent!")

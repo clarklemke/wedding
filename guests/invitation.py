@@ -9,7 +9,7 @@ from guests.models import Party
 INVITATION_TEMPLATE = "email_templates/invitation.html"
 
 
-def guess_party_by_invite_id_or_404(invite_id):
+def guess_party_by_invite_id_or_404(invite_id: str) -> Party:
     try:
         return Party.objects.get(invitation_id=invite_id)
     except Party.DoesNotExist:
@@ -20,10 +20,10 @@ def guess_party_by_invite_id_or_404(invite_id):
             raise Http404()
 
 
-def get_invitation_context(party):
+def get_invitation_context(party: Party) -> dict:
     return {
         "title": "Save The Date",
-        "main_image": "save-the-date.svg",
+        "main_image": "invite.jeg",
         "main_color": "#ffefdb",
         "font_color": "#666666",
         "page_title": "Anna and Clark - You're Invited!",
@@ -33,7 +33,9 @@ def get_invitation_context(party):
     }
 
 
-def send_invitation_email(party, recipient, test_only=False):
+def send_invitation_email(
+    party: Party, recipient: list[str], test_only: bool = False
+) -> None:
     if recipient is None:
         recipient = party.email
     if not recipient:
@@ -66,7 +68,7 @@ def send_invitation_email(party, recipient, test_only=False):
         msg.send()
 
 
-def send_all_invitations(test_only, mark_as_sent):
+def send_all_invitations(test_only: bool, mark_as_sent: bool) -> None:
     to_send_to = Party.in_default_order().filter(invitation_sent=None)
     for party in to_send_to:
         send_invitation_email(party, test_only=test_only)
