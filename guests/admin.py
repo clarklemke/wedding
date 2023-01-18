@@ -1,5 +1,13 @@
 from django.contrib import admin
-from .models import Party, Guest
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+from .models import Guest, Party
+
+
+class PartyResource(resources.ModelResource):
+    class Meta:
+        model = Party
 
 
 class GuestInline(admin.TabularInline):
@@ -13,7 +21,7 @@ class GuestInline(admin.TabularInline):
     # readonly_fields = ("name", "email")
 
 
-class PartyAdmin(admin.ModelAdmin):
+class PartyAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
         "email",
@@ -37,7 +45,7 @@ class PartyAdmin(admin.ModelAdmin):
     )
 
 
-class GuestAdmin(admin.ModelAdmin):
+class GuestAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
         "party",
