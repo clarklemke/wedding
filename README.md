@@ -18,6 +18,19 @@ To run locally one must have Docker installed. From the root directory of the pr
 docker compose up
 ```
 
+There are a number of environment variables that are not included in the repo and should be edited locally (if needed). Ddd the following to `/.envs/.local/.django` and change as needed:
+
+```bash
+DEBUG=1
+SECRET_KEY=fake_key
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+DJANGO_SUPERUSER_PASSWORD=FAKE_PASS
+DJANGO_SUPERUSER_EMAIL=FAKE_SUPER_EMAIL
+DJANGO_SUPERUSER_USERNAME=FAKE_USER
+SENDGRID_API_KEY=FAKE_SENDGRID_KEY
+```
+
 ## Deploy
 
 To deploy, install [flyctl](https://fly.io) and run:
