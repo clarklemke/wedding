@@ -28,7 +28,6 @@ DEBUG = os.getenv("DEBUG", False)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-tx0(q!lqq4qja4z#)608n=%n5yuu!qs8)6rzvza@kx@kilw9gi"
 
@@ -82,10 +81,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "api.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {}
 DATABASES["default"] = dj_database_url.config(conn_max_age=600)
 
@@ -132,24 +129,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+# Static
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
@@ -162,42 +150,29 @@ ANYMAIL = {
     "SENDGRID_API_KEY": os.getenv("SENDGRID_API_KEY"),
     "SENDGRID_API_URL": "https://api.sendgrid.com/v3/",
 }
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Swagger/Django will serve over http, force https here
-
 if ENVIRONMENT == "PROD":
     USE_X_FORWARDED_HOST = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-
-### Wedding Temp
+# Wedding Variables
 BRIDE_AND_GROOM = "Anna and Clark"
 # base address for all emails
 DEFAULT_WEDDING_EMAIL = "clarklemke@gmail.com"
-# the address your emails (save the dates/invites/etc.) will come from
 DEFAULT_WEDDING_FROM_EMAIL = DEFAULT_WEDDING_EMAIL
-# (
-#     BRIDE_AND_GROOM + " <" + DEFAULT_WEDDING_EMAIL + ">"
-# )  # change to 'address@domain.tld'
-# the default reply-to of your emails
-DEFAULT_WEDDING_REPLY_EMAIL = DEFAULT_WEDDING_EMAIL  # change to 'address@domain.tld'
-# the location of your wedding
+DEFAULT_WEDDING_REPLY_EMAIL = DEFAULT_WEDDING_EMAIL
+# wedding locations
 WEDDING_LOCATION_CANADA = "Vancouver, Canada"
 WEDDING_LOCATION_FRANCE = "Viella, France"
-# the date of your wedding
+# wedding dates
 WEDDING_DATE_CANADA = "July 15th, 2023"
 WEDDING_DATE_FRANCE = "August 19th, 2023"
-
+# wedding times
 WEDDING_TIME_CANADA = "5:30pm"
 WEDDING_TIME_FRANCE = "3:30pm"
-
-# when sending test emails it will use this address
+# test email default send address
 DEFAULT_WEDDING_TEST_EMAIL = "clarklemke@gmail.com"
-
-# This is used in links in save the date / invitations
+# base url of wedding website
 WEDDING_WEBSITE_URL = "https://annaclarkwedding.gq"

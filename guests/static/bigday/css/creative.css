@@ -47,8 +47,16 @@ p {
 	line-height: 1.5;
 }
 
+address {
+	margin-bottom: 0px;
+}
+
 tr:nth-child(odd) {
 	background: #00b1a9;
+}
+
+.one-color tr:nth-child(odd) {
+	background: black;
 }
 
 /* Navbar Section CSS */

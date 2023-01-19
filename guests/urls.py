@@ -3,12 +3,12 @@ from django.urls import path, re_path
 from .views import (
     GuestListView,
     home_page,
-    test_email,
-    save_the_date_preview,
     invitation,
-    invitation_email_test,
     invitation_email_preview,
+    invitation_email_test,
     rsvp_confirm,
+    save_the_date_preview,
+    test_email,
 )
 
 urlpatterns = [

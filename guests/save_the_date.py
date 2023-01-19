@@ -5,8 +5,8 @@ from zoneinfo import ZoneInfo
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from .models import Party
 
+from .models import Party
 
 SAVE_THE_DATE_TEMPLATE = "email_templates/save_the_date.html"
 SAVE_THE_DATE_CONTEXT = {

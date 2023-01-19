@@ -1,9 +1,11 @@
 from datetime import datetime
+
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.urls import reverse
 from django.http import Http404
 from django.template.loader import render_to_string
+from django.urls import reverse
+
 from guests.models import Party
 
 INVITATION_TEMPLATE = "email_templates/invitation.html"

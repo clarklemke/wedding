@@ -1,27 +1,20 @@
-from datetime import datetime
 from collections import namedtuple
+from datetime import datetime
 
-from django.views.generic import ListView
-from django.shortcuts import render
 from django.conf import settings
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect, HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from django.views.generic import ListView
+
+from .invitation import (INVITATION_TEMPLATE, get_invitation_context,
+                         guess_party_by_invite_id_or_404,
+                         send_invitation_email)
 from .models import Guest
-from .save_the_date import SAVE_THE_DATE_CONTEXT
-from .invitation import (
-    get_invitation_context,
-    INVITATION_TEMPLATE,
-    guess_party_by_invite_id_or_404,
-    send_invitation_email,
-)
-
-
-from .save_the_date import (
-    get_save_the_date_context,
-    send_save_the_date_email,
-    SAVE_THE_DATE_TEMPLATE,
-)
+from .save_the_date import (SAVE_THE_DATE_CONTEXT, SAVE_THE_DATE_TEMPLATE,
+                            get_save_the_date_context,
+                            send_save_the_date_email)
 
 
 class GuestListView(ListView):

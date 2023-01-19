@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
 import logging
 import random
+
+from django.db import OperationalError, connections
 from django.shortcuts import render
-from django.db import connections, OperationalError
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
