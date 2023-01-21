@@ -3,69 +3,52 @@
 {% block header_image %}
 {% endblock header_image %}
 {% block lead_copy %}
-    <table border="0"
-           width="100%"
-           cellpadding="0"
-           cellspacing="0"
-           align="center">
-        <tbody>
-            <tr>
-                <td style="padding: 20px 0 0 0;
+<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+    <tbody>
+        <tr>
+            <td style="padding: 20px 0 0 0;
                            font-size: 16px;
                            line-height: 20px;
                            font-family: Helvetica, Arial, sans-serif;
-                           color: #ff5c3e"
-                    class="padding-copy"
-                    align="center">
-                    You are invited to Anna Walker and Clark Lemke's Wedding
-                    <br/>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                           color: #ff5c3e" class="padding-copy" align="center">
+                You are invited to Anna Walker and Clark Lemke's Wedding
+                <br />
+            </td>
+        </tr>
+    </tbody>
+</table>
 {% endblock lead_copy %}
 {% block main_image %}
-    <a style="color: #ff5c3e"
-       href="{% if email_mode %}{{ site_url }}{% endif %}{% url 'invitation' invitation_id %}">
-        <img src="https://annaclarkwedding.gq/static/bigday/images/invite.jpg"
-             alt="Anna and Clark's Wedding Invitation"
-             style="display: block;
+<a style="color: #ff5c3e" href="{% if email_mode %}{{ site_url }}{% endif %}{% url 'invitation' invitation_id %}">
+    <img src="https://annaclarkwedding.gq/static/bigday/images/invite.jpg" alt="Anna and Clark's Wedding Invitation"
+        style="display: block;
                     padding: 0;
-                    color: #ffffff"
-             class="img-max"
-             border="0"
-             height="512"
-             width="512"/>
-    </a>
+                    color: #ffffff" class="img-max" border="0" height="512" width="512" />
+</a>
 {% endblock main_image %}
 {% block main_copy %}
-    <table border="0"
-           width="100%"
-           cellpadding="0"
-           cellspacing="0"
-           align="center">
-        <tbody>
-            <tr>
-                <td style="padding: 20px 0 0 0;
+<table border="0" width="100%" cellpadding="0" cellspacing="0" align="center">
+    <tbody>
+        <tr>
+            <td style="padding: 20px 0 0 0;
                            font-size: 16px;
                            line-height: 20px;
                            font-family: Helvetica, Arial, sans-serif;
-                           color: #ff5c3e"
-                    class="padding-copy"
-                    align="center">
-                    <br/>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                           color: #ff5c3e" class="padding-copy" align="center">
+                <br />
+            </td>
+        </tr>
+    </tbody>
+</table>
 {% endblock main_copy %}
 {% block footer_content %}
-    Please <a style="color: #ff5c3e"
-    href="{% if email_mode %}{{ site_url }}{% endif %}{% url 'invitation' invitation_id %}">view the invitation online</a> for more info and to RSVP.
-    <br/>
-    {% if email_mode %}
-        <p>
-            <a href="{{ site_url }}">{{ site_url }}</a>
-        </p>
-    {% endif %}
+Please <a style="color: #ff5c3e"
+    href="{% if email_mode %}{{ site_url }}{% endif %}{% url 'invitation' invitation_id %}">view the invitation
+    online</a> for more info and to please RSVP by March 1st, 2023.
+<br />
+{% if email_mode %}
+<p>
+    <a href="{{ site_url }}">{{ site_url }}</a>
+</p>
+{% endif %}
 {% endblock footer_content %}
