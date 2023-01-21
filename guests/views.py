@@ -8,13 +8,19 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.generic import ListView
 
-from .invitation import (INVITATION_TEMPLATE, get_invitation_context,
-                         guess_party_by_invite_id_or_404,
-                         send_invitation_email)
+from .invitation import (
+    INVITATION_TEMPLATE,
+    get_invitation_context,
+    guess_party_by_invite_id_or_404,
+    send_invitation_email,
+)
 from .models import Guest
-from .save_the_date import (SAVE_THE_DATE_CONTEXT, SAVE_THE_DATE_TEMPLATE,
-                            get_save_the_date_context,
-                            send_save_the_date_email)
+from .save_the_date import (
+    SAVE_THE_DATE_CONTEXT,
+    SAVE_THE_DATE_TEMPLATE,
+    get_save_the_date_context,
+    send_save_the_date_email,
+)
 
 
 class GuestListView(ListView):
@@ -129,6 +135,8 @@ def rsvp_confirm(request: HttpRequest, invite_id: str = None) -> HttpResponse:
         context={
             "party": party,
             "support_email": settings.DEFAULT_WEDDING_REPLY_EMAIL,
+            "couple_name": settings.BRIDE_AND_GROOM,
+            "website_url": settings.WEDDING_WEBSITE_URL,
         },
     )
 
