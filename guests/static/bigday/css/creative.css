@@ -123,7 +123,7 @@ tr:nth-child(odd) {
 
 @media(min-width:768px) {
 	.navbar-default {
-		border-color: #00b1a9);
+		border-color: #00b1a9;
 		background-color: #ffefdb;
 	}
 

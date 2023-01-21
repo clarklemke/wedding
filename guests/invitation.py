@@ -1,4 +1,5 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
@@ -35,17 +36,12 @@ def get_invitation_context(party: Party) -> dict:
     }
 
 
-def send_invitation_email(
-    party: Party, recipient: list[str], test_only: bool = False
-) -> None:
-    if recipient is None:
-        recipient = party.email
+def send_invitation_email(party: Party, test_only: bool = False) -> None:
+    recipient = party.email
     if not recipient:
         print(
             "===== WARNING: no valid email addresses found for {} =====".format(party)
         )
-        return
-
     context = get_invitation_context(party)
     context["email_mode"] = True
     context["site_url"] = settings.WEDDING_WEBSITE_URL
@@ -60,20 +56,20 @@ def send_invitation_email(
         subject,
         template_text,
         settings.DEFAULT_WEDDING_FROM_EMAIL,
-        recipient,
+        [recipient],
         reply_to=[settings.DEFAULT_WEDDING_REPLY_EMAIL],
     )
     msg.attach_alternative(template_html, "text/html")
 
-    print("sending invitation to {} ({})".format(party.name, ", ".join(recipient)))
+    print(f"sending invitation to {party.name} ({recipient})")
     if not test_only:
         msg.send()
 
 
 def send_all_invitations(test_only: bool, mark_as_sent: bool) -> None:
-    to_send_to = Party.in_default_order().filter(invitation_sent=None)
+    to_send_to = Party.objects.filter(invite_sent=None)
     for party in to_send_to:
         send_invitation_email(party, test_only=test_only)
         if mark_as_sent:
-            party.invitation_sent = datetime.now()
+            party.invite_sent = datetime.now(ZoneInfo("America/Los_Angeles"))
             party.save()
