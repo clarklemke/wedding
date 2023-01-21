@@ -56,7 +56,7 @@ tr:nth-child(odd) {
 }
 
 .one-color tr:nth-child(odd) {
-	background: black;
+	background: #df8fbd;
 }
 
 /* Navbar Section CSS */
@@ -86,12 +86,14 @@ tr:nth-child(odd) {
 }
 
 .navbar-default {
-	border-color: black;
+	border-color: #00b1a9;
 	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 	background-color: #ffefdb;
 	-webkit-transition: all .35s;
 	-moz-transition: all .35s;
 	transition: all .35s;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
 }
 
 .navbar-default .navbar-header .navbar-brand {
@@ -121,7 +123,7 @@ tr:nth-child(odd) {
 
 @media(min-width:768px) {
 	.navbar-default {
-		border-color: rgba(28, 56, 81, .3);
+		border-color: #00b1a9);
 		background-color: #ffefdb;
 	}
 
@@ -140,7 +142,7 @@ tr:nth-child(odd) {
 	}
 
 	.navbar-default.affix {
-		border-color: rgba(34, 34, 34, .05);
+		border-color: #00b1a9;
 		background-color: #ffefdb;
 	}
 
@@ -263,12 +265,12 @@ a.bg-info:focus {
 }
 
 .bg-primary {
-	background-color: #ffefdb;
-	color: #ff5c3e;
+	background-color: #00b1a9;
+	color: #ffefdb;
 }
 
 .bg-primary a {
-	color: #00b1a9;
+	color: #fcd450;
 }
 
 .bg-dark {

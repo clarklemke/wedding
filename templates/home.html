@@ -1,96 +1,95 @@
 {% extends "base.html" %}
 {% load static %}
 {% block page_head %}
-    <!-- Custom CSS -->
-    <link href="{% static 'bigday/css/creative.css' %}" rel="stylesheet"/>
+<!-- Custom CSS -->
+<link href="{% static 'bigday/css/creative.css' %}" rel="stylesheet" />
 {% endblock page_head %}
 {% block page_content %}
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#navbar-collapse"
-                        aria-controls="navbar-collapse"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">{{ couple_name }}'s Wedding</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a class="page-scroll" href="#vancouver">Vancouver</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#viella">Viella</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"
+                aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">{{ couple_name }}'s Wedding</a>
         </div>
-        <!-- /.container-fluid -->
-    </nav>
-    {% block main %}
-        <section class="bg-info" id="welcome">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 text-center">
-                        <div id="invitation-header">
-                            <h2>Anna and Clark's Wedding</h2>
-                            <p class="lead">
-                                {{ wedding_date_canada }}, at {{ wedding_time_canada }}
-                                <br/>
-                                Burnaby Village Museum
-                                <br/>
-                                Burnaby, Canada
-                            </p>
-                            <p class="lead">
-                                {{ wedding_date_france }}, at {{ wedding_time_france }}
-                                <br/>
-                                Chateau Viella
-                                <br/>
-                                Viella, France
-                            </p>
-                        </div>
-                    </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="#vancouver">Vancouver</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#viella">Viella</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+{% block main %}
+<section class="bg-info" id="welcome">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div id="invitation-header">
+                    <h2>Anna and Clark's Wedding</h2>
+                    <p class="lead">
+                        {{ wedding_date_canada }}, at {{ wedding_time_canada }}
+                        <br />
+                        Burnaby Village Museum
+                        <br />
+                        Burnaby, Canada
+                    </p>
+                    <p class="lead">
+                        {{ wedding_date_france }}, at {{ wedding_time_france }}
+                        <br />
+                        Chateau Viella
+                        <br />
+                        Viella, France
+                    </p>
+                    <p class="lead">
+                        We're so happy to get married that we're doing it twice!
+                        Can't wait to see everyone (at one or both celebrations)!
+                    </p>
                 </div>
             </div>
-        </section>
-        {% if '/invite/' in request.path %}
-            <section id="invitation" class="container">
-                {% include "partials/invitation-form.html" %}
-            </section>
-        {% endif %}
-        <section id="navigation" class="container-fluid">
-            {% include "partials/photo-bar.html" %}
-        </section>
-        <section id="vancouver" class="bg-dark">
-            {% include "partials/vancouver.html" %}
-        </section>
-        <section id="viella" class="bg-primary">
-            {% include "partials/viella.html" %}
-        </section>
-        <section id="contact" class="bg-dark">
-            {% include "partials/contact.html" %}
-        </section>
-    {% endblock main %}
+        </div>
+    </div>
+</section>
+{% if '/invite/' in request.path %}
+<section id="invitation" class="container">
+    {% include "partials/invitation-form.html" %}
+</section>
+{% endif %}
+<section id="navigation" class="container-fluid">
+    {% include "partials/photo-bar.html" %}
+</section>
+<section id="vancouver" class="bg-dark">
+    {% include "partials/vancouver.html" %}
+</section>
+<section id="viella" class="bg-primary">
+    {% include "partials/viella.html" %}
+</section>
+<section id="contact" class="bg-dark">
+    {% include "partials/contact.html" %}
+</section>
+{% endblock main %}
 {% endblock page_content %}
 {% block page_js %}
-    <!-- Plugin JavaScript -->
-    <!-- Easing is for the vertical scroll animations -->
-    <script src="{% static 'creative/js/jquery.easing.min.js' %}"></script>
-    <!-- Automatically fit text based on screen size.-->
-    <script src="{% static 'creative/js/jquery.fittext.js' %}"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="{% static 'creative/js/creative.js' %}"></script>
+<!-- Plugin JavaScript -->
+<!-- Easing is for the vertical scroll animations -->
+<script src="{% static 'creative/js/jquery.easing.min.js' %}"></script>
+<!-- Automatically fit text based on screen size.-->
+<script src="{% static 'creative/js/jquery.fittext.js' %}"></script>
+<!-- Custom Theme JavaScript -->
+<script src="{% static 'creative/js/creative.js' %}"></script>
 {% endblock page_js %}
