@@ -6,6 +6,8 @@ from .views import (
     invitation,
     invitation_email_preview,
     invitation_email_test,
+    reminder_email_preview,
+    reminder_email_test,
     rsvp_confirm,
     save_the_date_preview,
     test_email,
@@ -14,8 +16,6 @@ from .views import (
 urlpatterns = [
     path("", home_page, name="home"),
     re_path(r"^guests/$", GuestListView.as_view(), name="guest-list"),
-    # re_path(r'^dashboard/$', dashboard, name='dashboard'),
-    # re_path(r'^guests/export$', export_guests, name='export-guest-list'),
     re_path(r"^invite/(?P<invite_id>[\w-]+)/$", invitation, name="invitation"),
     re_path(
         r"^invite-email/(?P<invite_id>[\w-]+)/$",
@@ -35,5 +35,15 @@ urlpatterns = [
     re_path(r"^email-test/$", test_email, name="test-email"),
     re_path(
         r"^rsvp/confirm/(?P<invite_id>[\w-]+)/$", rsvp_confirm, name="rsvp-confirm"
+    ),
+    re_path(
+        r"^reminder-email-test/(?P<invite_id>[\w-]+)/$",
+        reminder_email_test,
+        name="reminder-email-test",
+    ),
+    re_path(
+        r"^reminder-email-preview/(?P<invite_id>[\w-]+)/$",
+        reminder_email_preview,
+        name="reminder-email-preview",
     ),
 ]

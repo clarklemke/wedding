@@ -15,6 +15,7 @@ from .invitation import (
     send_invitation_email,
 )
 from .models import Guest
+from .reminder import REMINDER_TEMPLATE, get_reminder_context, send_reminder_email
 from .save_the_date import (
     SAVE_THE_DATE_CONTEXT,
     SAVE_THE_DATE_TEMPLATE,
@@ -153,4 +154,18 @@ def invitation_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
     print(party)
     send_invitation_email(party, [party.email])
+    return HttpResponse("sent!")
+
+@login_required
+def reminder_email_preview(request: HttpRequest, invite_id: str) -> HttpResponse:
+    party = guess_party_by_invite_id_or_404(invite_id)
+    context = get_reminder_context(party)
+    return render(request, REMINDER_TEMPLATE, context=context)
+
+
+@login_required
+def reminder_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
+    party = guess_party_by_invite_id_or_404(invite_id)
+    print(party)
+    send_reminder_email(party, [party.email])
     return HttpResponse("sent!")
