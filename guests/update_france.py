@@ -20,7 +20,7 @@ def get_update_context(party: Party) -> dict:
     }
 
 
-def send_reminder_email(party: Party, test_only: bool = False) -> None:
+def send_update_email(party: Party, test_only: bool = False) -> None:
     recipient = party.email
     if not recipient:
         print(f"===== WARNING: no valid email addresses found for {party} =====")
@@ -55,4 +55,4 @@ def send_all_updates(test_only: bool) -> None:
     to_send_to = Party.objects.filter()
     for party in to_send_to:
         if party.any_guests_attending_france:
-            send_reminder_email(party, test_only=test_only)
+            send_update_email(party, test_only=test_only)
