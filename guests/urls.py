@@ -11,6 +11,7 @@ from .views import (
     rsvp_confirm,
     save_the_date_preview,
     test_email,
+    update_email_test,
 )
 
 urlpatterns = [
@@ -45,5 +46,10 @@ urlpatterns = [
         r"^reminder-email-preview/(?P<invite_id>[\w-]+)/$",
         reminder_email_preview,
         name="reminder-email-preview",
+    ),
+    re_path(
+        r"^update-email-test/(?P<invite_id>[\w-]+)/$",
+        update_email_test,
+        name="update-email-test",
     ),
 ]
