@@ -22,6 +22,7 @@ from .save_the_date import (
     get_save_the_date_context,
     send_save_the_date_email,
 )
+from .update_france import send_update_email
 
 
 class GuestListView(ListView):
@@ -156,6 +157,7 @@ def invitation_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
     send_invitation_email(party, [party.email])
     return HttpResponse("sent!")
 
+
 @login_required
 def reminder_email_preview(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
@@ -168,4 +170,12 @@ def reminder_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
     party = guess_party_by_invite_id_or_404(invite_id)
     print(party)
     send_reminder_email(party, [party.email])
+    return HttpResponse("sent!")
+
+
+@login_required
+def update_email_test(request: HttpRequest, invite_id: str) -> HttpResponse:
+    party = guess_party_by_invite_id_or_404(invite_id)
+    print(party)
+    send_update_email(party, [party.email])
     return HttpResponse("sent!")

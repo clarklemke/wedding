@@ -54,5 +54,5 @@ def send_reminder_email(party: Party, test_only: bool = False) -> None:
 def send_all_updates(test_only: bool) -> None:
     to_send_to = Party.objects.filter()
     for party in to_send_to:
-        if party.any_guests_attending_france():
+        if party.any_guests_attending_france:
             send_reminder_email(party, test_only=test_only)

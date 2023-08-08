@@ -1,6 +1,6 @@
 from django.core.management import BaseCommand
 
-from guests.reminder import send_all_reminders
+from guests.update_france import send_all_updates
 
 
 class Command(BaseCommand):
@@ -14,4 +14,4 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        send_all_reminders(test_only=not options["send"])
+        send_all_updates(test_only=not options["send"])
