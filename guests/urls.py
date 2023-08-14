@@ -12,6 +12,7 @@ from .views import (
     save_the_date_preview,
     test_email,
     update_email_test,
+    update_preview,
 )
 
 urlpatterns = [
@@ -32,6 +33,11 @@ urlpatterns = [
         r"^save-the-date/$",
         save_the_date_preview,
         name="save-the-date",
+    ),
+    re_path(
+        r"^update-preview/$",
+        update_preview,
+        name="update",
     ),
     re_path(r"^email-test/$", test_email, name="test-email"),
     re_path(

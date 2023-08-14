@@ -22,7 +22,7 @@ from .save_the_date import (
     get_save_the_date_context,
     send_save_the_date_email,
 )
-from .update_france import send_update_email
+from .update_france import UPDATE_TEMPLATE, get_update_context, send_update_email
 
 
 class GuestListView(ListView):
@@ -52,6 +52,12 @@ def save_the_date_preview(request: HttpRequest) -> HttpResponse:
     context = get_save_the_date_context()
     context["email_mode"] = False
     return render(request, SAVE_THE_DATE_TEMPLATE, context=context)
+
+
+def update_preview(request: HttpRequest) -> HttpResponse:
+    context = get_update_context()
+    context["email_mode"] = False
+    return render(request, UPDATE_TEMPLATE, context=context)
 
 
 @login_required

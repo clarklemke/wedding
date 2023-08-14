@@ -10,11 +10,11 @@ UPDATE_TEMPLATE = "email_templates/update.html"
 
 def get_update_context(party: Party) -> dict:
     return {
-        "title": "Reminder",
+        "title": "Viella Wedding Update",
         "main_color": "#ffefdb",
         "font_color": "#666666",
-        "page_title": "Anna and Clark - You're Invited!",
-        "preheader_text": "You are invited!",
+        "page_title": "Anna and Clark's Viella Wedding Update",
+        "preheader_text": "Can't wait to party!",
         "invitation_id": party.invitation_id,
         "party": party,
     }
@@ -30,11 +30,8 @@ def send_update_email(party: Party, test_only: bool = False) -> None:
     context["couple"] = settings.BRIDE_AND_GROOM
     template_html = render_to_string(UPDATE_TEMPLATE, context=context)
     template_text = (
-        f"You're invited to {settings.BRIDE_AND_GROOM}'s wedding. To view this"
-        " invitation, visit"
-        f" {reverse('invitation', args=[context['invitation_id']])} in any browser."
+        f"Update to this weekend's Viella wedding {settings.BRIDE_AND_GROOM}."
     )
-
     subject = "Updated Timeline for Anna and Clark's France Wedding"
 
     msg = EmailMultiAlternatives(
