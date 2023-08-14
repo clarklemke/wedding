@@ -21,7 +21,7 @@ def send_update_email(party: Party, test_only: bool = False) -> None:
     recipient = party.email
     if not recipient:
         print(f"===== WARNING: no valid email addresses found for {party} =====")
-    context = get_update_context(party)
+    context = get_update_context()
     context["email_mode"] = True
     context["site_url"] = settings.WEDDING_WEBSITE_URL
     context["couple"] = settings.BRIDE_AND_GROOM
