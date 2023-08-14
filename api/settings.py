@@ -116,7 +116,9 @@ SWAGGER_SETTINGS = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": (
+            "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
+        ),
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
@@ -171,7 +173,7 @@ WEDDING_DATE_CANADA = "July 15th, 2023"
 WEDDING_DATE_FRANCE = "August 19th, 2023"
 # wedding times
 WEDDING_TIME_CANADA = "5:30pm"
-WEDDING_TIME_FRANCE = "3:30pm"
+WEDDING_TIME_FRANCE = "4:00pm"
 # test email default send address
 DEFAULT_WEDDING_TEST_EMAIL = "clarklemke@gmail.com"
 # base url of wedding website

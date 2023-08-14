@@ -1,22 +1,19 @@
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
-from django.urls import reverse
 
 from guests.models import Party
 
 UPDATE_TEMPLATE = "email_templates/update.html"
 
 
-def get_update_context(party: Party) -> dict:
+def get_update_context() -> dict:
     return {
         "title": "Viella Wedding Update",
         "main_color": "#ffefdb",
         "font_color": "#666666",
         "page_title": "Anna and Clark's Viella Wedding Update",
         "preheader_text": "Can't wait to party!",
-        "invitation_id": party.invitation_id,
-        "party": party,
     }
 
 
